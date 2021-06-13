@@ -27,11 +27,15 @@ func commands() {
 	app.Commands = []cli.Command{
 		{
 			Name:  "install",
-			Usage: "Install a Formulae or Cask (using --cask)",
+			Usage: "Install a Formulae (using --formula) or Cask (using --cask)",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
 					Name:  "cask",
 					Usage: "Tell the installer to install a cask with that name",
+				},
+				&cli.BoolFlag{
+					Name:  "formula",
+					Usage: "Tell the installer to install a formula with that name",
 				},
 			},
 			Action: func(c *cli.Context) {
@@ -47,6 +51,8 @@ func commands() {
 				if c.Bool("cask") {
 					//* Set the type of package to a cask
 					packageType = "cask"
+				} else if c.Bool("formula") {
+					packageType = "formula"
 				}
 
 				//* Check if the package exists
