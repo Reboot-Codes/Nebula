@@ -47,11 +47,13 @@ func commands() {
 				//* Get the name of the package
 				var packageName string = c.Args()[0]
 
-				//* Check if the --cask or -c flag is set
+				//* Check if the --cask flag is set
 				if c.Bool("cask") {
 					//* Set the type of package to a cask
 					packageType = "cask"
+					//* Check if the --formula flag is set
 				} else if c.Bool("formula") {
+					//* Set the type of package to a formula
 					packageType = "formula"
 				}
 
