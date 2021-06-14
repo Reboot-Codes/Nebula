@@ -8,7 +8,7 @@ import (
 
 	"github.com/urfave/cli"
 
-	"brewery/cmddefinitions"
+	"nebula/cmddefinitions"
 )
 
 //* Instantiate a new app
@@ -16,7 +16,7 @@ var App = cli.NewApp()
 
 //* All about the CLI
 func info() {
-	App.Name = "An alternative Brew client written in GoLang"
+	App.Name = "An open-source package manager for macOS."
 	App.Usage = ""
 	App.Author = "Reboot-Codes"
 	App.Version = "0.1.0"

@@ -1,7 +1,7 @@
 package cmddefinitions
 
 import (
-	"brewery/subcommands"
+	"nebula/subcommands"
 
 	"github.com/urfave/cli"
 )
@@ -11,15 +11,15 @@ func Commands(app *cli.App) {
 	app.Commands = []cli.Command{
 		{
 			Name:  "install",
-			Usage: "Install a Formulae (using --formula) or Cask (using --cask)",
+			Usage: "Install a script (using --script) or an app (using --app)",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
-					Name:  "cask",
-					Usage: "Tell the installer to install a cask with that name",
+					Name:  "app",
+					Usage: "Tell the installer to install an app with that name",
 				},
 				&cli.BoolFlag{
-					Name:  "formula",
-					Usage: "Tell the installer to install a formula with that name",
+					Name:  "script",
+					Usage: "Tell the installer to install a script with that name",
 				},
 			},
 			Action: func(c *cli.Context) {
@@ -28,15 +28,15 @@ func Commands(app *cli.App) {
 		},
 		{
 			Name:  "search",
-			Usage: "Search for Formulae or Casks",
+			Usage: "Search for scripts or apps",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
-					Name:  "cask",
-					Usage: "Filter for casks only",
+					Name:  "app",
+					Usage: "Filter for apps only",
 				},
 				&cli.BoolFlag{
-					Name:  "formula",
-					Usage: "Filter for formulae only",
+					Name:  "script",
+					Usage: "Filter for scripts only",
 				},
 			},
 			Action: func(c *cli.Context) {

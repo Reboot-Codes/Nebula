@@ -1,4 +1,4 @@
-module brewery
+module nebula
 
 go 1.16
 

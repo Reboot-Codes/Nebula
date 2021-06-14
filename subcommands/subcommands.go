@@ -15,43 +15,43 @@ func Install(c *cli.Context) {
 	// TODO: Acctually check if the package exists
 	var foundPackage bool = true
 
-	//* Default to installing a formula,
+	//* Default to installing a script,
 	// TODO: Make this configurable
-	var packageType string = "formula"
+	var packageType string = "script"
 
 	//* Get the name of the package
 	var packageName string = c.Args()[0]
 
-	//* Check if the --cask flag is set
-	if c.Bool("cask") {
+	//* Check if the --app flag is set
+	if c.Bool("app") {
 
-		//* Set the type of package to a cask
-		packageType = "cask"
+		//* Set the type of package to an app
+		packageType = "app"
 
-		//* Check if the --formula flag is set
-	} else if c.Bool("formula") {
+		//* Check if the --script flag is set
+	} else if c.Bool("script") {
 
-		//* Set the type of package to a formula
-		packageType = "formula"
+		//* Set the type of package to a script
+		packageType = "script"
 
 	}
 
 	//* Check if the package exists
 	if foundPackage {
 
-		//* Check if the package is a cask
-		if packageType == "cask" {
+		//* Check if the package is an app
+		if packageType == "app" {
 
-			//* Tell the user that they are installing a cask with the name they passed in
+			//* Tell the user that they are installing a app with the name they passed in
 			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Installing a cask called \"" + packageName + "\"")
+			fmt.Println(" Installing an App called \"" + packageName + "\"")
 
-			//* or if it's a formula
-		} else if packageType == "formula" {
+			//* or if it's a script
+		} else if packageType == "script" {
 
-			//* Tell the user that they are installing a formula with the name that they passed in
+			//* Tell the user that they are installing a script with the name that they passed in
 			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Installing a formula called \"" + packageName + "\"")
+			fmt.Println(" Installing a Script called \"" + packageName + "\"")
 
 		}
 
@@ -81,19 +81,19 @@ func Search(c *cli.Context) {
 		//* Check if the user specified a search type
 	} else if c.NumFlags() == 1 {
 
-		//* Look for casks with that name
-		if c.Bool("cask") {
+		//* Look for apps with that name
+		if c.Bool("app") {
 
 			//* Feedback
 			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Searching for a cask called \"" + c.Args()[0] + "\"")
+			fmt.Println(" Searching for Apps")
 
-			//* Look for formulae with that name
-		} else if c.Bool("formula") {
+			//* Look for planete with that name
+		} else if c.Bool("script") {
 
 			//* Feedback
 			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Searching for a formula called \"" + c.Args()[0] + "\"")
+			fmt.Println(" Searching for Scripts")
 
 		}
 
