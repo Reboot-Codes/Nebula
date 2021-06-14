@@ -43,5 +43,12 @@ func Commands(app *cli.App) {
 				subcommands.Search(c)
 			},
 		},
+		{
+			Name:  "licence",
+			Usage: "Prints the licence text to the console",
+			Action: func(c *cli.Context) {
+				subcommands.Licence()
+			},
+		},
 	}
 }
