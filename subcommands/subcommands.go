@@ -8,6 +8,8 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli"
+
+	"nebula/subcommands/installers"
 )
 
 func Install(c *cli.Context) {
@@ -42,16 +44,14 @@ func Install(c *cli.Context) {
 		//* Check if the package is an app
 		if packageType == "app" {
 
-			//* Tell the user that they are installing a app with the name they passed in
-			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Installing an App called \"" + packageName + "\"")
+			//* Run the installer
+			installers.AppInstaller(c, packageName)
 
 			//* or if it's a script
 		} else if packageType == "script" {
 
-			//* Tell the user that they are installing a script with the name that they passed in
-			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Installing a Script called \"" + packageName + "\"")
+			//* Run the installer
+			installers.ScriptInstaller(c, packageName)
 
 		}
 
