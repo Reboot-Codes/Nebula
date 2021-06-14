@@ -17,43 +17,14 @@ func Install(c *cli.Context) {
 	// TODO: Acctually check if the package exists
 	var foundPackage bool = true
 
-	//* Default to installing a script,
-	// TODO: Make this configurable
-	var packageType string = "script"
-
 	//* Get the name of the package
 	var packageName string = c.Args()[0]
-
-	//* Check if the --app flag is set
-	if c.Bool("app") {
-
-		//* Set the type of package to an app
-		packageType = "app"
-
-		//* Check if the --script flag is set
-	} else if c.Bool("script") {
-
-		//* Set the type of package to a script
-		packageType = "script"
-
-	}
 
 	//* Check if the package exists
 	if foundPackage {
 
-		//* Check if the package is an app
-		if packageType == "app" {
-
-			//* Run the installer
-			installers.AppInstaller(c, packageName)
-
-			//* or if it's a script
-		} else if packageType == "script" {
-
-			//* Run the installer
-			installers.ScriptInstaller(c, packageName)
-
-		}
+		//* Run the installer
+		installers.AppInstaller(c, packageName)
 
 		//* if the package doesn't exist
 	} else if !foundPackage {
@@ -71,43 +42,9 @@ func Install(c *cli.Context) {
 
 func Search(c *cli.Context) {
 
-	//* Check the number of flags
-	if c.NumFlags() == 0 {
-
-		//* Search all packages
-		color.New(color.FgHiBlue).Printf("==>")
-		fmt.Println(" Searching for \"" + c.Args()[0] + "\"")
-
-		//* Check if the user specified a search type
-	} else if c.NumFlags() == 1 {
-
-		//* Look for apps with that name
-		if c.Bool("app") {
-
-			//* Feedback
-			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Searching for Apps")
-
-			//* Look for planete with that name
-		} else if c.Bool("script") {
-
-			//* Feedback
-			color.New(color.FgHiBlue).Printf("==>")
-			fmt.Println(" Searching for Scripts")
-
-		}
-
-		//* Too many flags
-	} else if c.NumFlags() <= 2 {
-
-		//* Then don't specify a type >:(
-		color.New(color.FgHiRed).Printf("Error:")
-		fmt.Println(" Multiple Flags Specified")
-
-		//* Exit with a non-zero exit code
-		os.Exit(1)
-
-	}
+	//* Search all packages
+	color.New(color.FgHiBlue).Printf("==>")
+	fmt.Println(" Searching for \"" + c.Args()[0] + "\"")
 
 }
 
