@@ -76,7 +76,7 @@ _An error may happen where an access denied error happens, if so, run with `sudo
 
 ## Updating 
 
-If you have `mage` installed, just run:
+If you have `mage` and `git` (duh) installed, just run:
 
 ```bash
 git pull
