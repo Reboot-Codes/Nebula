@@ -74,8 +74,15 @@ func AppInstaller(c *cli.Context, packageName string) {
 	} else if !foundManifestData {
 
 		printStatus(color.FgHiRed, "Error: Couldn't Find the Manifest Data for \""+packageName+"\"")
-		printStatus(color.FgHiRed, "Check if you spelled the name of the package correctly, becuase we couldn't find a package with that name...")
+		printStatus(color.FgHiRed, "Check if you spelled the name of the package correctly, ")
+		printStatus(color.FgHiRed, "becuase we couldn't find a package with that name in any manifest...")
 
 	}
+
+}
+
+func AppUnInstaller(c *cli.Context, packageName string) {
+
+	printStatus(color.FgHiBlue, "Running Unistaller for \""+packageName+"\"...")
 
 }

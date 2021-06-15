@@ -10,6 +10,13 @@ import (
 func Commands(app *cli.App) {
 	app.Commands = []cli.Command{
 		{
+			Name:  "search",
+			Usage: "Search for packages",
+			Action: func(c *cli.Context) {
+				subcommands.Search(c)
+			},
+		},
+		{
 			Name:  "install",
 			Usage: "Install a package",
 			Action: func(c *cli.Context) {
@@ -17,10 +24,10 @@ func Commands(app *cli.App) {
 			},
 		},
 		{
-			Name:  "search",
-			Usage: "Search for packages",
+			Name:  "remove",
+			Usage: "Removes an installed package",
 			Action: func(c *cli.Context) {
-				subcommands.Search(c)
+				subcommands.Remove(c)
 			},
 		},
 		{

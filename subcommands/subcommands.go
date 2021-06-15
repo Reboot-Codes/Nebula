@@ -12,6 +12,21 @@ import (
 	"nebula/subcommands/installers"
 )
 
+//* Helper function to print the status
+func printStatus(statuscolor color.Attribute, statusMessage string) {
+
+	color.New(statuscolor).Printf("==>")
+	println(" " + statusMessage)
+
+}
+
+func Search(c *cli.Context) {
+
+	//* Search all packages
+	printStatus(color.FgHiBlue, "Searching for \""+c.Args()[0]+"\"")
+
+}
+
 func Install(c *cli.Context) {
 
 	// TODO: Acctually check if the package exists
@@ -30,8 +45,7 @@ func Install(c *cli.Context) {
 	} else if !foundPackage {
 
 		//* Tell the user what happened
-		color.New(color.FgHiRed).Printf("Error:")
-		fmt.Println(" Could not find any package called \"" + packageName + "\"")
+		printStatus(color.FgHiRed, "Could not find any package called \""+packageName+"\"")
 
 		//* Exit with a non-zero exit code
 		os.Exit(1)
@@ -40,11 +54,37 @@ func Install(c *cli.Context) {
 
 }
 
-func Search(c *cli.Context) {
+func Remove(c *cli.Context) {
 
-	//* Search all packages
-	color.New(color.FgHiBlue).Printf("==>")
-	fmt.Println(" Searching for \"" + c.Args()[0] + "\"")
+	//* Get the name of the package
+	var packageName string = c.Args()[0]
+	// TODO: Really check if the package is installed
+	var foundPackage bool = true
+
+	printStatus(color.FgHiBlue, "Searching for \""+packageName+"\" in Installed Packages")
+
+	if foundPackage {
+
+		printStatus(color.FgHiBlack, "Are you sure you want to remove \""+packageName+"\"? [y/N] ")
+
+		var userInput string
+		fmt.Scanln(&userInput)
+
+		if userInput == "" {
+
+			os.Exit(0)
+
+		} else if userInput == "y" || userInput == "Y" {
+
+			installers.AppUnInstaller(c, packageName)
+
+		} else if userInput == "n" || userInput == "N" {
+
+			os.Exit(0)
+
+		}
+
+	}
 
 }
 
