@@ -25,7 +25,7 @@ func printStatus(statusColor color.Attribute, statusMessage string) {
 // A build step that requires additional params, or platform specific steps for example
 func Build() error {
 
-	//mg.Deps(InstallDeps)
+	mg.Deps(InstallDeps)
 	printStatus(color.FgHiBlue, "Building...")
 	cmd := exec.Command("go", "build", "-o", "nebula", ".")
 	return cmd.Run()
@@ -52,10 +52,10 @@ func Uninstall() error {
 }
 
 // Manage your deps, or running package managers.
-func InstallDeps() error {
+func InstallDeps() {
 	printStatus(color.FgHiBlue, "Installing Deps...")
-	cmd := exec.Command("go", "get", "github.com/stretchr/piglatin")
-	return cmd.Run()
+	exec.Command("go", "get", "github.com/fatih/color").Run()
+	exec.Command("go", "get", "github.com/urfave/cli").Run()
 }
 
 // Clean up after yourself
