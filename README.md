@@ -19,3 +19,57 @@ Intel macs:
 ```bash
 export NEBULA_PROCESSOR_ARCH=amd64
 ```
+
+## Installation
+
+There are 2 direct requirements other than having GoLang installed. 
+
+A quick way to install dependancies, build, and install nebula is by using Mage. Make sure that your GOPATH is set to `/Users/$USER/go` in most cases ($USER should be replaced with your user name). 
+
+Here are the quick instructions for installing Mage:
+
+1. Clone Mage: 
+
+```bash
+git clone https://github.com/magefile/mage
+```
+
+2. `cd` into the `mage` directory
+
+3. Run the bootstrap script:
+
+```bash
+go run bootstrap.go
+```
+
+_You might have to run it with `sudo` if it doesn't work the first time; that fixes access denied errors._
+
+4. Check if $GOPATH/bin is in your $PATH by running:
+
+```bash
+echo $PATH
+```
+
+5. And checking if `/Users/$USER/go/bin` is there; however it might not be there, if so run:
+
+```bash
+export PATH=/Users/$USER/go/bin:$PATH
+```
+
+6. Then go into the directory you would like to have the source code for nebula, then run:
+
+```bash
+git clone https://github.com/Reboot-Codes/nebula.git
+```
+
+7. `cd` into the `nebula` directory
+
+8. Then run the following to install nebula:
+
+```bash
+mage install
+```
+
+_An error may happen where an access denied error happens, if so, run with `sudo`._
+
+9. You should be finished! Try running `nebula`!
