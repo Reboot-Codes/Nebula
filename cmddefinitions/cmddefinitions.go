@@ -31,6 +31,19 @@ func Commands(app *cli.App) {
 			},
 		},
 		{
+			Name:  "manifest",
+			Usage: "Manage manifest files",
+			Subcommands: []cli.Command{
+				{
+					Name:  "list",
+					Usage: "Lists all manifest files",
+					Action: func(c *cli.Context) {
+						subcommands.ManifestList(c)
+					},
+				},
+			},
+		},
+		{
 			Name:  "licence",
 			Usage: "Prints the licence text to the console",
 			Action: func(c *cli.Context) {

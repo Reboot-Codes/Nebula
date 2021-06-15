@@ -82,6 +82,7 @@ func AppInstaller(c *cli.Context, packageName string) {
 		printStatus(color.FgHiRed, "Error: Couldn't Find the Manifest Data for \""+packageName+"\"")
 		printStatus(color.FgHiRed, "Check if you spelled the name of the package correctly, ")
 		printStatus(color.FgHiRed, "becuase we couldn't find a package with that name in any manifest...")
+		printStatus(color.FgHiRed, "Try adding the manifest with: nebula add manifest -h")
 
 	}
 

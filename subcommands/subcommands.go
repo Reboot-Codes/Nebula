@@ -3,7 +3,10 @@ package subcommands
 
 //* Import all the things
 import (
+	"encoding/xml"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/fatih/color"
@@ -11,6 +14,53 @@ import (
 
 	"nebula/subcommands/installers"
 )
+
+// our struct which all of the manifest data
+type Manifest struct {
+	XMLName  xml.Name  `xml:"packages"`
+	packages []Package `xml:"package"`
+}
+
+type Package struct {
+	XMLName     xml.Name     `xml:"package"`
+	name        string       `xml:"name"`
+	version     string       `xml:"version`
+	description string       `xml:"description"`
+	install     Installation `xml:"install"`
+}
+
+type Installation struct {
+	XMLName     xml.Name `xml:"install"`
+	installType string   `xml:"type"`
+	script      string   `xml:"script"`
+}
+
+//! This doesn't get the file for some reason...
+func GetManifest() Manifest {
+
+	//* Open the manifest
+	xmlFile, err := os.Open("manifest.xml")
+	//* if we os.Open returns an error then handle it
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//* defer the closing of our xmlFile so that we can parse it later on
+	defer xmlFile.Close()
+
+	//* read our opened xmlFile as a byte array.
+	byteValue, _ := ioutil.ReadAll(xmlFile)
+
+	//* we initialize the array
+	var manifest Manifest
+
+	//* we unmarshal our byteArray which contains our
+	//* xmlFile's content into 'manifest' which we defined above
+	xml.Unmarshal(byteValue, &manifest)
+
+	return manifest
+
+}
 
 //* Helper function to print the status
 func printStatus(statuscolor color.Attribute, statusMessage string) {
@@ -83,6 +133,27 @@ func Remove(c *cli.Context) {
 			os.Exit(0)
 
 		}
+
+	}
+
+}
+
+func ManifestList(c *cli.Context) {
+
+	printStatus(color.FgHiBlue, "Pulling the manifest list...")
+
+	var manifest Manifest = GetManifest()
+
+	println(manifest.packages[0].name)
+
+	for i := 0; i < len(manifest.packages); i++ {
+
+		printStatus(color.FgHiBlack, "Package Name:        "+manifest.packages[i].name)
+		printStatus(color.FgHiBlack, "Package Version:     "+manifest.packages[i].version)
+		printStatus(color.FgHiBlack, "Package Description: "+manifest.packages[i].description)
+		printStatus(color.FgHiBlack, "Install Information:")
+		printStatus(color.FgHiBlack, "	Instalation Type:   "+manifest.packages[i].install.installType)
+		printStatus(color.FgHiBlack, "	Instalation Script: "+manifest.packages[i].install.script)
 
 	}
 
