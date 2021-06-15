@@ -24,7 +24,7 @@ export NEBULA_PROCESSOR_ARCH=amd64
 
 There are 2 direct requirements other than having GoLang installed. 
 
-A quick way to install dependancies, build, and install nebula is by using Mage. Make sure that your GOPATH is set to `/Users/$USER/go` in most cases ($USER should be replaced with your user name). 
+A quick way to install dependancies, build, and install `nebula` is by using Mage. Make sure that your GOPATH is set to `/Users/$USER/go` ($USER should be replaced with your user name). 
 
 Here are the quick instructions for installing Mage:
 
@@ -73,3 +73,18 @@ mage install
 _An error may happen where an access denied error happens, if so, run with `sudo`._
 
 9. You should be finished! Try running `nebula`!
+
+## Updating 
+
+If you have `mage` installed, just run:
+
+```bash
+git pull
+```
+and then:
+
+```bash
+mage update
+```
+
+In the project root (it contains main.go, README.md, magefile.go, and other stuff listed here)!
