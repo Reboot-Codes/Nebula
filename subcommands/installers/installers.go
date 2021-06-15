@@ -37,18 +37,22 @@ func AppInstaller(c *cli.Context, packageName string) {
 
 		printStatus(color.FgHiGreen, "Found Manifest Data for: "+packageName)
 
+		//* Looks like you forgot something...
 		if processorType == "" {
 
+			//* Give an error if the type of processor isn't specified
 			printStatus(color.FgHiRed, "Error: Your processor architecture has not been set!")
-			printStatus(color.FgHiRed, "For arm macs: export NEBULA_PROCESSOR_ARCH=arm64")
+			printStatus(color.FgHiRed, "For arm macs, run: export NEBULA_PROCESSOR_ARCH=arm64")
 			printStatus(color.FgHiRed, "or")
-			printStatus(color.FgHiRed, "For Intel macs: export NEBULA_PROCESSOR_ARCH=amd64")
+			printStatus(color.FgHiRed, "For Intel macs, run: export NEBULA_PROCESSOR_ARCH=amd64")
 
+			//* Boomer
 		} else if processorType == "amd64" {
 
 			//* Continue installing the package
 			printStatus(color.FgHiBlue, "Getting Binary for the platform \"amd64\" for the package \""+packageName+"\"")
 
+			//* "The future of mac" or something like that
 		} else if processorType == "arm64" {
 
 			//* Check the direct compatibility of the package
@@ -57,6 +61,7 @@ func AppInstaller(c *cli.Context, packageName string) {
 				//* Continue installing the package
 				printStatus(color.FgHiBlue, "Getting Binary for the platform \"arm64\" for the package \""+packageName+"\"")
 
+				//* I guess it isn't directly compatible
 			} else if !packageCompatible {
 
 				//* Warn about possible errors installing under Rosseta 2
@@ -73,6 +78,7 @@ func AppInstaller(c *cli.Context, packageName string) {
 		//* Couldn't find the manifest data
 	} else if !foundManifestData {
 
+		//* Oops, that's an error
 		printStatus(color.FgHiRed, "Error: Couldn't Find the Manifest Data for \""+packageName+"\"")
 		printStatus(color.FgHiRed, "Check if you spelled the name of the package correctly, ")
 		printStatus(color.FgHiRed, "becuase we couldn't find a package with that name in any manifest...")
@@ -81,8 +87,10 @@ func AppInstaller(c *cli.Context, packageName string) {
 
 }
 
+//* Remove apps because you need that in a package manager
 func AppUnInstaller(c *cli.Context, packageName string) {
 
+	//* RUN THE UNINSTALLER!
 	printStatus(color.FgHiBlue, "Running Unistaller for \""+packageName+"\"...")
 
 }
