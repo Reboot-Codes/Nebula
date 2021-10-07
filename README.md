@@ -1,6 +1,7 @@
 # Nebula
 
 **ALERT: This is not finished so don't expect it to acctually install things!**
+Also, I might change it back to a brew client. And this isn't actively worked on anymore.
 
 This used to be a repository for an alternative [Homebrew](https://brew.sh/) client, but I decided to make a different _thing_. I do love `brew` however and use it daily, so go check them out!
 
