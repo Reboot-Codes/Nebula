@@ -3,7 +3,7 @@
 **ALERT: This is not finished so don't expect it to acctually install things!**
 Also, I might change it back to a brew client. And this isn't actively worked on anymore.
 
-This used to be a repository for an alternative [Homebrew](https://brew.sh/) client, but I decided to make a different _thing_. I do love `brew` however and use it daily, so go check them out!
+<strike>This used to be a repository for an alternative [Homebrew](https://brew.sh/) client, but I decided to make a different _thing_.</strike> I do love `brew` however and use it daily, so go check them out!
 
 Before you run this application, be sure to set the `NEBULA_PROCESSOR_ARCH` environment variable to either `arm64` for an M1 mac or `amd64` for an Intel one! This is **very** important, since it let's nebula know if you're running on arm64 or amd64! To set the processor arch run the following command in the terminal:
 
